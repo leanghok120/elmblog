@@ -2,7 +2,15 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        gruvbox: {
+          bg: "#282828",
+          bg2: "#504945",
+          fg: "#fbf1c7",
+        },
+      },
+    },
   },
   plugins: [],
 };
