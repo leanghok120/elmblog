@@ -8,6 +8,7 @@ export default {
           bg: "#282828",
           bg2: "#504945",
           fg: "#fbf1c7",
+          gray: "#928374",
         },
       },
     },
