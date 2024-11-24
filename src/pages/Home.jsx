@@ -3,10 +3,14 @@ import Sidebar from "../components/Sidebar";
 
 function Home() {
   return (
-    <div className="h-screen bg-gruvbox-bg text-gruvbox-fg">
+    <>
       <Sidebar />
-      Home
-    </div>
+      <div className="h-full flex justify-center">
+        <div className="p-10 w-1/3">
+          <h1 className="text-4xl font-black">Home</h1>
+        </div>
+      </div>
+    </>
   );
 }
 
