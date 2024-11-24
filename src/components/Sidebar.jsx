@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router";
+import { HomeIcon, UserIcon, TelescopeIcon } from "lucide-react";
 
 function Sidebar() {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,7 +27,26 @@ function Sidebar() {
         }}
         onMouseLeave={handleMouseLeave}
       >
-        Sidebar Content
+        <div className="flex flex-col gap-10">
+          <Link to="/" className="text-xl font-bold flex items-center gap-2">
+            <HomeIcon />
+            Home
+          </Link>
+          <Link
+            to="/discover"
+            className="text-xl font-bold flex items-center gap-2"
+          >
+            <TelescopeIcon />
+            Discover
+          </Link>
+          <Link
+            to="/profile"
+            className="text-xl font-bold flex items-center gap-2"
+          >
+            <UserIcon />
+            Profile
+          </Link>
+        </div>
       </div>
     </>
   );
