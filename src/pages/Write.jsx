@@ -11,20 +11,20 @@ function Write() {
     <>
       <Sidebar />
       <div className="h-full flex justify-center">
-        <div className="p-10 w-1/3">
+        <div className="p-4 md:p-10 w-full max-w-2xl mx-auto">
           <ToggleEditor isPreview={isPreview} setIsPreview={setIsPreview} />
 
           {isPreview ? (
-            <h1 className="text-4xl font-black">{title}</h1>
+            <h1 className="text-3xl md:text-4xl font-black">{title}</h1>
           ) : (
             <input
-              className="text-4xl font-black bg-transparent outline-none w-full"
+              className="text-3xl md:text-4xl font-black bg-transparent outline-none w-full"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
           )}
 
-          <Editor />
+          <Editor isPreview={isPreview} />
         </div>
       </div>
     </>

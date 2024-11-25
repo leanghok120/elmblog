@@ -7,9 +7,9 @@ function Home() {
     <>
       <Sidebar />
       <div className="h-full flex justify-center">
-        <div className="p-10 w-1/3">
-          <h1 className="text-4xl font-black">Home</h1>
-          <div className="mt-10 space-y-5">
+        <div className="p-4 md:p-10 w-full max-w-2xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-black">Home</h1>
+          <div className="mt-6 md:mt-10 space-y-4 md:space-y-5">
             <Post
               id={1}
               title="My Neovim Setup"
