@@ -1,6 +1,7 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
 import Post from "../components/Post";
+import Footer from "../components/Footer";
 
 function Discover() {
   return (
@@ -17,6 +18,7 @@ function Discover() {
               author="Bashbunni"
             />
           </div>
+          <Footer />
         </div>
       </div>
     </>

@@ -1,6 +1,7 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
 import Post from "../components/Post";
+import Footer from "../components/Footer";
 
 function Home() {
   return (
@@ -29,6 +30,7 @@ function Home() {
               author="Leanghok"
             />
           </div>
+          <Footer />
         </div>
       </div>
     </>
