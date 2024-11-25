@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router";
-import { HomeIcon, UserIcon, TelescopeIcon } from "lucide-react";
+import { HomeIcon, UserIcon, TelescopeIcon, PencilIcon } from "lucide-react";
 
 function Sidebar() {
   const [isVisible, setIsVisible] = useState(false);
@@ -31,6 +31,13 @@ function Sidebar() {
           <Link to="/" className="text-xl font-bold flex items-center gap-2">
             <HomeIcon />
             Home
+          </Link>
+          <Link
+            to="/write"
+            className="text-xl font-bold flex items-center gap-2"
+          >
+            <PencilIcon />
+            Write
           </Link>
           <Link
             to="/discover"
