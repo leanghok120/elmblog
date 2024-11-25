@@ -1,23 +1,30 @@
 import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
+import Editor from "../components/Editor";
+import ToggleEditor from "../components/ToggleEditor";
 
 function Write() {
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState("Title");
+  const [isPreview, setIsPreview] = useState(false);
 
   return (
     <>
       <Sidebar />
       <div className="h-full flex justify-center">
         <div className="p-10 w-1/3">
-          <h1 className="text-4xl font-black">Write</h1>
-          <div className="mt-10">
-            <textarea
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              placeholder="Start writing... (Markdown is supported)"
-              className="w-full min-h-[70vh] p-6 border-2 border-gruvbox-bg2 bg-gruvbox-bg rounded-xl resize-none outline-none shadow-xl leading-relaxed"
+          <ToggleEditor isPreview={isPreview} setIsPreview={setIsPreview} />
+
+          {isPreview ? (
+            <h1 className="text-4xl font-black">{title}</h1>
+          ) : (
+            <input
+              className="text-4xl font-black bg-transparent outline-none w-full"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
-          </div>
+          )}
+
+          <Editor />
         </div>
       </div>
     </>
