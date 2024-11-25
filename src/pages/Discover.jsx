@@ -11,6 +11,7 @@ function Discover() {
           <h1 className="text-4xl font-black">Discover</h1>
           <div className="mt-10 space-y-5">
             <Post
+              id={4}
               title="A personal website"
               date="02, Oct, 2024"
               author="Bashbunni"
