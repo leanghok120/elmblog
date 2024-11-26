@@ -29,24 +29,6 @@ function Home() {
               date="09, Jan, 2021"
               author="Leanghok"
             />
-            <Post
-              id={3}
-              title="Morgen Calendar"
-              date="09, Jan, 2021"
-              author="Leanghok"
-            />
-            <Post
-              id={3}
-              title="Morgen Calendar"
-              date="09, Jan, 2021"
-              author="Leanghok"
-            />
-            <Post
-              id={3}
-              title="Morgen Calendar"
-              date="09, Jan, 2021"
-              author="Leanghok"
-            />
           </div>
           <Footer />
         </div>
