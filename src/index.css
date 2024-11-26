@@ -1,3 +1,67 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.prose {
+  @apply text-gruvbox-fg;
+
+  /* Headings */
+  h1 {
+    @apply text-3xl md:text-4xl font-black mb-6;
+  }
+
+  h2 {
+    @apply text-2xl font-bold mb-4;
+  }
+
+  h3 {
+    @apply text-xl font-bold mb-3;
+  }
+
+  /* Paragraphs */
+  p {
+    @apply mb-4 leading-relaxed;
+  }
+
+  /* Links */
+  a {
+    @apply text-gruvbox-fg underline hover:opacity-80;
+  }
+
+  /* Lists */
+  ul,
+  ol {
+    @apply mb-4 ml-6;
+  }
+
+  li {
+    @apply mb-2;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  /* Spacing between elements */
+  * + * {
+    @apply mt-4;
+  }
+
+  /* Code blocks */
+  pre {
+    @apply bg-gruvbox-bg2 p-4 rounded-xl mb-4 overflow-x-auto;
+  }
+
+  code {
+    @apply bg-gruvbox-bg2 px-1.5 py-0.5 rounded;
+  }
+
+  /* Blockquotes */
+  blockquote {
+    @apply border-l-4 border-gruvbox-bg2 pl-4 italic my-4;
+  }
+}
