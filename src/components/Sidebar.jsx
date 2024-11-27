@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { HomeIcon, UserIcon, TelescopeIcon, PencilIcon } from "lucide-react";
 
 function Sidebar() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   function handleMouseEnter() {
     setIsVisible(true);
