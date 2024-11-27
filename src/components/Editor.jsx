@@ -8,7 +8,7 @@ import {
 } from "@mdxeditor/editor";
 
 function Editor() {
-  const [content, setContent] = useState("# Start writing...");
+  const [content, setContent] = useState("Start writing...");
 
   return (
     <MDXEditor
