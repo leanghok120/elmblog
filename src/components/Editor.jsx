@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   headingsPlugin,
   listsPlugin,
@@ -7,9 +7,7 @@ import {
   quotePlugin,
 } from "@mdxeditor/editor";
 
-function Editor() {
-  const [content, setContent] = useState("Start writing...");
-
+function Editor({ content, setContent }) {
   return (
     <MDXEditor
       markdown={content}
