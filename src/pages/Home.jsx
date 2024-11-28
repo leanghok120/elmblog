@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import db from "../appwrite/databases";
 import { Loader2 } from "lucide-react";
+import { Query } from "appwrite";
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -14,7 +15,7 @@ function Home() {
   }, []);
 
   async function fetchPosts() {
-    const response = await db.posts.list();
+    const response = await db.posts.list([Query.equal("author", "Leanghok")]);
 
     setPosts(response.documents);
     setIsLoading(false);
