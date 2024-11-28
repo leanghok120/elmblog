@@ -1,5 +1,4 @@
 import React from "react";
-import Sidebar from "../components/Sidebar";
 import ProfileCard from "../components/ProfileCard";
 import Navbar from "../components/Navbar";
 
