@@ -24,11 +24,11 @@ function Home() {
     <>
       <Navbar />
       <div className="h-full flex justify-center">
-        {isLoading ? (
-          <Loader2 className="animate-spin mt-5" />
-        ) : (
-          <div className="p-4 md:p-10 w-full max-w-2xl mx-auto">
-            <h1 className="text-3xl md:text-4xl font-black">Home</h1>
+        <div className="p-4 md:p-10 w-full max-w-2xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-black">Home</h1>
+          {isLoading ? (
+            <Loader2 className="animate-spin mt-5 mx-auto" />
+          ) : (
             <div className="mt-6 md:mt-10 space-y-4 md:space-y-5">
               {posts.map((post) => (
                 <Post
@@ -40,9 +40,9 @@ function Home() {
                 />
               ))}
             </div>
-            <Footer />
-          </div>
-        )}
+          )}
+          <Footer />
+        </div>
       </div>
     </>
   );
