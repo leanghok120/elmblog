@@ -10,7 +10,7 @@ function ProfileSettings({ username, getProfile }) {
   const [newUsername, setNewUsername] = useState(username);
   const [newBio, setNewBio] = useState("");
   const modalRef = useRef(null);
-  const { user } = useAuth();
+  const { user, getUser } = useAuth();
 
   useEffect(() => {
     const modal = modalRef.current;
@@ -39,6 +39,7 @@ function ProfileSettings({ username, getProfile }) {
       // Update username
       if (newUsername !== username) {
         await account.updateName(newUsername);
+        getUser();
       }
 
       // Update bio
