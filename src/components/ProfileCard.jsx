@@ -6,13 +6,21 @@ import { Query } from "appwrite";
 
 function ProfileCard() {
   const { user } = useAuth();
+  const [profile, setProfile] = useState({});
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    getUsersPost();
+    getProfile();
+    getUserPosts();
   }, []);
 
-  async function getUsersPost() {
+  async function getProfile() {
+    const response = await db.profiles.list([Query.equal("userId", user.$id)]);
+
+    setProfile(response.documents[0]);
+  }
+
+  async function getUserPosts() {
     const response = await db.posts.list([Query.equal("author", user.name)]);
 
     setPosts(response.documents);
@@ -26,7 +34,7 @@ function ProfileCard() {
         className="w-20 rounded-full"
       />
       <h2 className="font-bold text-3xl">{user.name}</h2>
-      <p className="mt-2">A quick little bio</p>
+      <p className="mt-2">{profile.bio}</p>
       <h3 className="font-bold text-2xl mt-5">Posts</h3>
       <div className="mt-3 space-y-5">
         {posts.map((post) => (

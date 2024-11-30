@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { account } from "../appwrite/config";
+import db from "../appwrite/databases";
 
 const AuthContext = createContext();
 
@@ -20,7 +21,13 @@ export function AuthProvider({ children }) {
   }
 
   async function signup(email, password, username) {
-    await account.create("unique()", email, password, username);
+    const user = await account.create("unique()", email, password, username);
+
+    await db.profiles.create({
+      userId: user.$id,
+      bio: "A quick little bio",
+    });
+
     getUser();
   }
 
