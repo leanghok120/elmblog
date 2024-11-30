@@ -1,10 +1,15 @@
 import { SettingsIcon } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
+import { account } from "../appwrite/config";
+import db from "../appwrite/databases";
+import { Query } from "appwrite";
+import { useAuth } from "./AuthProvider";
 
-function ProfileSettings({ username }) {
+function ProfileSettings({ username, getProfile }) {
   const [newUsername, setNewUsername] = useState(username);
   const [newBio, setNewBio] = useState("");
   const modalRef = useRef(null);
+  const { user } = useAuth();
 
   useEffect(() => {
     const modal = modalRef.current;
@@ -29,6 +34,24 @@ function ProfileSettings({ username }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    try {
+      // Update username
+      if (newUsername !== username) {
+        await account.updateName(newUsername);
+      }
+
+      // Update bio
+      const response = await db.profiles.list([
+        Query.equal("userId", user.$id),
+      ]);
+      const profile = response.documents[0];
+      await db.profiles.update(profile.$id, { bio: newBio });
+
+      getProfile();
+      modalRef.current.close();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (

@@ -29,7 +29,7 @@ function ProfileCard() {
 
   return (
     <div className="border-2 border-gruvbox-bg2 rounded-2xl p-5 mt-10 relative">
-      <ProfileSettings username={user.name} bio={profile.bio} />
+      <ProfileSettings username={user.name} getProfile={getProfile} />
       <img
         src="https://avatars.githubusercontent.com/u/112290652?v=4"
         alt="profile picture"
