@@ -4,6 +4,7 @@ import { account } from "../appwrite/config";
 import db from "../appwrite/databases";
 import { Query } from "appwrite";
 import { useAuth } from "./AuthProvider";
+import LogoutBtn from "./LogoutBtn";
 
 function ProfileSettings({ username, getProfile }) {
   const [newUsername, setNewUsername] = useState(username);
@@ -85,6 +86,7 @@ function ProfileSettings({ username, getProfile }) {
             Save Changes
           </button>
         </form>
+        <LogoutBtn />
       </dialog>
     </>
   );
