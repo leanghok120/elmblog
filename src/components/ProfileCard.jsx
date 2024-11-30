@@ -3,6 +3,7 @@ import Post from "../components/Post";
 import { useAuth } from "./AuthProvider";
 import db from "../appwrite/databases";
 import { Query } from "appwrite";
+import ProfileSettings from "./ProfileSettings";
 
 function ProfileCard() {
   const { user } = useAuth();
@@ -27,7 +28,8 @@ function ProfileCard() {
   }
 
   return (
-    <div className="border-2 border-gruvbox-bg2 rounded-2xl p-5 mt-10">
+    <div className="border-2 border-gruvbox-bg2 rounded-2xl p-5 mt-10 relative">
+      <ProfileSettings username={user.name} bio={profile.bio} />
       <img
         src="https://avatars.githubusercontent.com/u/112290652?v=4"
         alt="profile picture"
