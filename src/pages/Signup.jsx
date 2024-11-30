@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import { Link, useNavigate } from "react-router";
-import { account } from "../appwrite/config";
+import { useAuth } from "../components/AuthProvider";
 
 function Signup() {
   const navigate = useNavigate();
@@ -10,12 +10,13 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { signup } = useAuth();
 
   async function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await account.create("unique()", email, password, username);
+      await signup(email, password, username);
       navigate("/");
     } catch (error) {
       setError(error.message);

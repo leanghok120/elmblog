@@ -7,22 +7,42 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const getUser = async () => {
-      try {
-        const userData = await account.get();
-        setUser(userData);
-      } catch {
-        setUser(null);
-      }
-    };
-
     getUser();
   }, []);
 
+  async function getUser() {
+    try {
+      const userData = await account.get();
+      setUser(userData);
+    } catch {
+      setUser(null);
+    }
+  }
+
+  async function signup(email, password, username) {
+    await account.create("unique()", email, password, username);
+    getUser();
+  }
+
+  async function login(email, password) {
+    await account.createEmailPasswordSession(email, password);
+    getUser();
+  }
+
+  async function logout() {
+    await account.deleteSession("current");
+    getUser();
+  }
+
+  const contextData = {
+    user,
+    signup,
+    login,
+    logout,
+  };
+
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={contextData}>{children}</AuthContext.Provider>
   );
 }
 
