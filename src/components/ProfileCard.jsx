@@ -31,7 +31,7 @@ function ProfileCard() {
     <div className="border-2 border-gruvbox-bg2 rounded-2xl p-5 mt-10 relative">
       <ProfileSettings username={user.name} getProfile={getProfile} />
       <img
-        src="https://avatars.githubusercontent.com/u/112290652?v=4"
+        src="https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=Brian"
         alt="profile picture"
         className="w-20 rounded-full"
       />
