@@ -33,15 +33,21 @@ function Home() {
             <Loader2 className="animate-spin mt-5 mx-auto" />
           ) : (
             <div className="mt-6 md:mt-10 space-y-4 md:space-y-5">
-              {posts.map((post) => (
-                <Post
-                  key={post.$id}
-                  id={post.$id}
-                  title={post.title}
-                  date={post.date}
-                  author={post.author}
-                />
-              ))}
+              {posts.length > 0 ? (
+                posts.map((post) => (
+                  <Post
+                    key={post.$id}
+                    id={post.$id}
+                    title={post.title}
+                    date={post.date}
+                    author={post.author}
+                  />
+                ))
+              ) : (
+                <p className="text-center text-gruvbox-gray">
+                  You have no posts!
+                </p>
+              )}
             </div>
           )}
           <Footer />

@@ -39,15 +39,19 @@ function ProfileCard() {
       <p className="mt-2">{profile.bio}</p>
       <h3 className="font-bold text-2xl mt-5">Posts</h3>
       <div className="mt-3 space-y-5">
-        {posts.map((post) => (
-          <Post
-            key={post.$id}
-            id={post.$id}
-            title={post.title}
-            date={post.date}
-            author={post.author}
-          />
-        ))}
+        {posts.length > 0 ? (
+          posts.map((post) => (
+            <Post
+              key={post.$id}
+              id={post.$id}
+              title={post.title}
+              date={post.date}
+              author={post.author}
+            />
+          ))
+        ) : (
+          <p className="text-center text-gruvbox-gray">No posts!</p>
+        )}
       </div>
     </div>
   );
