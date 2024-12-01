@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import db from "../appwrite/databases";
 import { useNavigate } from "react-router";
 import { CheckIcon } from "lucide-react";
+import { useAuth } from "../components/AuthProvider";
 
 function Write() {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ function Write() {
   const [content, setContent] = useState(
     "Start writing... (markdown is supported)",
   );
+  const { user } = useAuth();
 
   function getCurrentDate() {
     const today = new Date();
@@ -22,7 +24,13 @@ function Write() {
 
   async function publishPost() {
     const date = getCurrentDate();
-    const payload = { title, content, author: "Leanghok", date };
+    const payload = {
+      title,
+      content,
+      author: user.name,
+      date,
+      userId: user.$id,
+    };
 
     await db.posts.create(payload);
     navigate("/");

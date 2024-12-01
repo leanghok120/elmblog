@@ -5,17 +5,19 @@ import Navbar from "../components/Navbar";
 import db from "../appwrite/databases";
 import { Loader2 } from "lucide-react";
 import { Query } from "appwrite";
+import { useAuth } from "../components/AuthProvider";
 
 function Home() {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { user } = useAuth();
 
   useEffect(() => {
     fetchPosts();
   }, []);
 
   async function fetchPosts() {
-    const response = await db.posts.list([Query.equal("author", "Leanghok")]);
+    const response = await db.posts.list([Query.equal("userId", user.$id)]);
 
     setPosts(response.documents);
     setIsLoading(false);

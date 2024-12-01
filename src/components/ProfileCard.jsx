@@ -22,7 +22,7 @@ function ProfileCard() {
   }
 
   async function getUserPosts() {
-    const response = await db.posts.list([Query.equal("author", user.name)]);
+    const response = await db.posts.list([Query.equal("userId", user.$id)]);
 
     setPosts(response.documents);
   }
