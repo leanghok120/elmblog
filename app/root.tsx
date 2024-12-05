@@ -34,7 +34,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body className="text-gruvbox min-h-screen">
         <Navbar />
-        {children}
+        <div className="w-full p-10 max-w-2xl mx-auto">{children}</div>
         <ScrollRestoration />
         <Scripts />
       </body>
