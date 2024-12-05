@@ -1,4 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
+import PostCard from "~/components/PostCard";
 
 export const meta: MetaFunction = () => {
   return [
@@ -11,6 +12,11 @@ export default function Index() {
   return (
     <>
       <h1 className="text-3xl md:text-4xl font-black">Home</h1>
+      <PostCard
+        title={"Building elm"}
+        date={"02, 10, 2024"}
+        author={"Leanghok"}
+      />
     </>
   );
 }
