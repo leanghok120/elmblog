@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import daisyui from "daisyui";
+import typography from "@tailwindcss/typography";
 
 export default {
   content: ["./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}"],
@@ -25,6 +26,39 @@ export default {
           "Noto Color Emoji",
         ],
       },
+      typography: (theme) => ({
+        gruvbox: {
+          css: {
+            color: theme("textColor.gruvbox.DEFAULT"),
+            a: {
+              color: theme("textColor.gruvbox.contrast"),
+              "&:hover": {
+                color: theme("textColor.gruvbox.muted"),
+              },
+            },
+            h1: {
+              color: theme("textColor.gruvbox.contrast"),
+              marginBottom: "0.5rem",
+            },
+            h2: {
+              color: theme("textColor.gruvbox.contrast"),
+              marginBottom: "0.5rem",
+            },
+            h3: {
+              color: theme("textColor.gruvbox.contrast"),
+              marginBottom: "0.5rem",
+            },
+            p: { marginTop: "0.25rem", marginBottom: "0.25rem" },
+            blockquote: {
+              marginTop: "0.5rem",
+              marginBottom: "0.5rem",
+              color: theme("textColor.gruvbox.muted"),
+            },
+            ul: { marginTop: "0.25rem", marginBottom: "0.25rem" },
+            ol: { marginTop: "0.25rem", marginBottom: "0.25rem" },
+          },
+        },
+      }),
     },
   },
   daisyui: {
@@ -46,5 +80,5 @@ export default {
       },
     ],
   },
-  plugins: [daisyui],
+  plugins: [typography, daisyui],
 } satisfies Config;
