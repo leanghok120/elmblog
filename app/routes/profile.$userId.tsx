@@ -1,4 +1,12 @@
+import type { MetaFunction } from "@remix-run/node";
 import PostCard from "~/components/PostCard";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Elm" },
+    { name: "description", content: "Welcome to Remix!" },
+  ];
+};
 
 export default function Profile() {
   return (
