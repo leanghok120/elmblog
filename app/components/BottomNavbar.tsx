@@ -21,7 +21,7 @@ function BottomNavbar() {
           <TelescopeIcon size={24} />
         </Link>
         <Link
-          to="/profile"
+          to="/profile/123"
           className="btn btn-ghost btn-circle text-primary-focus"
         >
           <UserIcon size={24} />

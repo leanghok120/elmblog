@@ -52,7 +52,7 @@ function Sidebar() {
               Discover
             </Link>
             <Link
-              to="/profile"
+              to="/profile/123"
               className="btn btn-ghost flex items-center gap-3 text-lg font-medium"
             >
               <UserIcon size={24} />

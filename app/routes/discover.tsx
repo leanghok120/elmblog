@@ -1,4 +1,13 @@
+import type { MetaFunction } from "@remix-run/node";
 import PostCard from "~/components/PostCard";
+import Footer from "~/components/Footer";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Elm" },
+    { name: "description", content: "Welcome to Remix!" },
+  ];
+};
 
 export default function Discover() {
   return (
@@ -10,6 +19,7 @@ export default function Discover() {
         date={"08, 9, 2023"}
         author={"Killua"}
       />
+      <Footer />
     </>
   );
 }
