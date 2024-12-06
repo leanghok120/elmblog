@@ -14,6 +14,7 @@ export default function Index() {
     <>
       <h1 className="text-3xl md:text-4xl font-black">Home</h1>
       <PostCard
+        id={1}
         title={"Building elm"}
         date={"02, 10, 2024"}
         author={"Leanghok"}
