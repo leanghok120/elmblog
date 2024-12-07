@@ -23,7 +23,9 @@ export default function Index() {
 
   return (
     <>
-      <h1 className="text-3xl md:text-4xl font-black">Home</h1>
+      <h1 className="text-3xl md:text-4xl font-black text-gruvbox-contrast">
+        Home
+      </h1>
       <div className="mt-8 space-y-4">
         {posts.map((post) => (
           <PostCard

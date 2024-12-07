@@ -11,7 +11,9 @@ export const meta: MetaFunction = () => {
 export default function Profile() {
   return (
     <>
-      <h1 className="text-3xl md:text-4xl font-black">Profile</h1>
+      <h1 className="text-3xl md:text-4xl font-black text-gruvbox-contrast">
+        Profile
+      </h1>
       <div className="border-2 border-base-200 p-5 rounded-xl shadow-xl mt-8 max-w-96 mx-auto">
         <img
           src="https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=Adrian"

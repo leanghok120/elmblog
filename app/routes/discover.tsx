@@ -12,7 +12,9 @@ export const meta: MetaFunction = () => {
 export default function Discover() {
   return (
     <>
-      <h1 className="text-3xl md:text-4xl font-black">Discover</h1>
+      <h1 className="text-3xl md:text-4xl font-black text-gruvbox-contrast">
+        Discover
+      </h1>
       <div className="mt-8 space-y-4">
         <PostCard
           id={2}
