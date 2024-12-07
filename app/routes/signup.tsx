@@ -48,32 +48,35 @@ function signup() {
       </h1>
       <Form className="mt-8 space-y-4" method="post">
         <div className="form-control">
-          <label>Name</label>
+          <label htmlFor="name">Name</label>
           <input
             type="text"
             className="input border-1 border-base-200 w-full"
             placeholder="Enter your name"
             name="name"
+            id="name"
             required
           />
         </div>
         <div className="form-control">
-          <label>Username</label>
+          <label htmlFor="username">Username</label>
           <input
             type="text"
             className="input border-1 border-base-200 w-full"
             placeholder="Enter your username"
             name="username"
+            id="username"
             required
           />
         </div>
         <div className="form-control">
-          <label>Password</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             className="input border-1 border-base-200 w-full"
             placeholder="Enter your password"
             name="password"
+            id="password"
             required
           />
         </div>
