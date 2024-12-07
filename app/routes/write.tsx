@@ -38,7 +38,9 @@ function Write() {
       <input type="hidden" name="title" value={title} />
       <input type="hidden" name="content" value={content} />
 
-      <button className="absolute bottom-5 right-5 btn">Publish</button>
+      <button className="absolute bottom-24 lg:bottom-5 right-5 btn">
+        Publish
+      </button>
     </Form>
   );
 }
