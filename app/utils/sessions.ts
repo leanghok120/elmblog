@@ -1,4 +1,5 @@
 import { createCookieSessionStorage } from "@remix-run/node";
+import prisma from "./db";
 
 const sessionSecret = process.env.SESSION_SECRET;
 
@@ -18,9 +19,20 @@ export async function createSession(userId: string) {
   return commitSession(session);
 }
 
-export async function getUserId(request: Request) {
+export async function getUser(request: Request) {
   const session = await getSession(request.headers.get("Cookie"));
-  return session.get("userId");
+  const userId = session.get("userId");
+  if (!userId) {
+    return null;
+  }
+
+  try {
+    const user = await prisma.user.findUnique({ where: { id: userId } });
+
+    return user;
+  } catch (error) {
+    return null;
+  }
 }
 
 export async function destroyUserSession(request: Request) {

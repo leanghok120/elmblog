@@ -4,6 +4,7 @@ import TitleInput from "~/components/TitleInput";
 import { Form, MetaFunction, redirect } from "@remix-run/react";
 import prisma from "~/utils/db";
 import formatDate from "~/utils/formatDate";
+import { requireAuth } from "~/utils/auth";
 
 export const meta: MetaFunction = () => {
   return [
@@ -11,6 +12,10 @@ export const meta: MetaFunction = () => {
     { name: "description", content: "Welcome to Remix!" },
   ];
 };
+
+export async function loader({ request }) {
+  return await requireAuth(request);
+}
 
 export async function action({ request }) {
   const formData = await request.formData();

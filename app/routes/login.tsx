@@ -3,6 +3,7 @@ import { Form, Link, redirect, useActionData } from "@remix-run/react";
 import { comparePassword } from "~/utils/auth";
 import prisma from "~/utils/db";
 import { createSession } from "~/utils/sessions";
+import { getUser } from "~/utils/sessions";
 
 export const meta: MetaFunction = () => {
   return [

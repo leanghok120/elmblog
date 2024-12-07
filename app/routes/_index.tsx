@@ -3,7 +3,8 @@ import type { Post } from "@prisma/client";
 import PostCard from "~/components/PostCard";
 import Footer from "~/components/Footer";
 import prisma from "~/utils/db";
-import { useLoaderData } from "@remix-run/react";
+import { redirect, useLoaderData } from "@remix-run/react";
+import { getUser } from "~/utils/sessions";
 
 export const meta: MetaFunction = () => {
   return [
@@ -12,7 +13,12 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export async function loader() {
+export async function loader({ request }) {
+  const user = await getUser(request);
+  if (!user) {
+    return redirect("/signup");
+  }
+
   const posts: Post[] = await prisma.post.findMany();
 
   return posts;

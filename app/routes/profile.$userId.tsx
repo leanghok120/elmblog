@@ -1,5 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import PostCard from "~/components/PostCard";
+import { requireAuth } from "~/utils/auth";
 
 export const meta: MetaFunction = () => {
   return [
@@ -7,6 +8,10 @@ export const meta: MetaFunction = () => {
     { name: "description", content: "Welcome to Remix!" },
   ];
 };
+
+export async function loader({ request }) {
+  return await requireAuth(request);
+}
 
 export default function Profile() {
   return (
