@@ -1,4 +1,4 @@
-import { MetaFunction, useLoaderData } from "@remix-run/react";
+import { Form, MetaFunction, redirect, useLoaderData } from "@remix-run/react";
 import prisma from "~/utils/db";
 import type { Post } from "@prisma/client";
 import {
@@ -8,6 +8,7 @@ import {
   MDXEditor,
   quotePlugin,
 } from "@mdxeditor/editor";
+import { Trash2 } from "lucide-react";
 
 export const meta: MetaFunction = () => {
   return [
@@ -26,11 +27,22 @@ export async function loader({ params }) {
   return post;
 }
 
+export async function action({ params }) {
+  await prisma.post.delete({ where: { id: params.postId } });
+
+  return redirect("/");
+}
+
 export default function Posts() {
   const post = useLoaderData<Post>();
 
   return (
     <>
+      <Form method="delete">
+        <button className="btn btn-ghost text-red-500 absolute top-5 right-5">
+          <Trash2 size={20} />
+        </button>
+      </Form>
       <h1 className="text-3xl md:text-4xl font-black text-gruvbox-contrast">
         {post.title}
       </h1>
