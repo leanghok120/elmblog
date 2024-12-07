@@ -4,6 +4,7 @@ import PostCard from "~/components/PostCard";
 import Footer from "~/components/Footer";
 import prisma from "~/utils/db";
 import { useLoaderData } from "@remix-run/react";
+import { getUser } from "~/utils/sessions";
 
 export const meta: MetaFunction = () => {
   return [
@@ -12,8 +13,13 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export async function loader() {
-  const posts: Post[] = await prisma.post.findMany();
+export async function loader({ request }) {
+  const user = await getUser(request);
+
+  const posts: Post[] = await prisma.post.findMany({
+    include: { user: true },
+    where: { userId: { not: user.id } },
+  });
 
   return posts;
 }
@@ -33,7 +39,7 @@ export default function Discover() {
             id={post.id}
             title={post.title}
             date={post.date}
-            author="Leanghok"
+            author={post.user.name}
           />
         ))}
       </div>
