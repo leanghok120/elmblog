@@ -16,6 +16,10 @@ export const meta: MetaFunction = () => {
 export async function loader({ request }) {
   const user = await getUser(request);
 
+  if (!user) {
+    return await prisma.post.findMany({ include: { user: true } });
+  }
+
   const posts: Post[] = await prisma.post.findMany({
     include: { user: true },
     where: { userId: { not: user.id } },
