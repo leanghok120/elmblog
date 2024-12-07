@@ -1,6 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 import PostCard from "~/components/PostCard";
-import { requireAuth } from "~/utils/auth";
+import prisma from "~/utils/db";
 
 export const meta: MetaFunction = () => {
   return [
@@ -9,11 +10,19 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export async function loader({ request }) {
-  return await requireAuth(request);
+export async function loader({ params }) {
+  const user = await prisma.user.findUnique({
+    where: { username: params.username },
+    include: { posts: true },
+  });
+
+  console.log(user);
+  return user;
 }
 
 export default function Profile() {
+  const user = useLoaderData();
+
   return (
     <>
       <h1 className="text-3xl md:text-4xl font-black text-gruvbox-contrast">
@@ -25,16 +34,20 @@ export default function Profile() {
           alt="avatar"
           className="w-20 rounded-full"
         />
-        <h2 className="text-xl md:text-3xl font-semibold mt-2">Leanghok</h2>
-        <p className="mt-1">A quick little bio</p>
+        <h2 className="text-xl md:text-3xl font-semibold mt-2">{user.name}</h2>
+        <p className="text-gruvbox-muted">@{user.username}</p>
+        <p className="mt-3">A quick little bio</p>
         <h2 className="text-2xl font-bold mt-6">Posts</h2>
         <div className="mt-6 space-y-4">
-          <PostCard
-            id={1}
-            title={"Building elm"}
-            date={"02, 10, 2024"}
-            author={"Leanghok"}
-          />
+          {user.posts.map((post) => (
+            <PostCard
+              key={post.id}
+              id={post.id}
+              title={post.title}
+              date={post.date}
+              author={user.name}
+            />
+          ))}
         </div>
       </div>
     </>

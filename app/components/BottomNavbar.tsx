@@ -1,7 +1,9 @@
-import { Link } from "@remix-run/react";
+import { Link, useRouteLoaderData } from "@remix-run/react";
 import { HomeIcon, UserIcon, TelescopeIcon, PencilIcon } from "lucide-react";
 
 function BottomNavbar() {
+  const user = useRouteLoaderData("root");
+
   return (
     <div className="fixed bottom-0 left-0 w-full bg-base-100 shadow-inner border-t border-base-300 z-50">
       <nav className="flex items-center justify-evenly py-3">
@@ -21,7 +23,7 @@ function BottomNavbar() {
           <TelescopeIcon size={24} />
         </Link>
         <Link
-          to="/profile/123"
+          to={`/profile/${user.username}`}
           className="btn btn-ghost btn-circle text-primary-focus"
         >
           <UserIcon size={24} />

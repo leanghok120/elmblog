@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Link } from "@remix-run/react";
+import { Link, useRouteLoaderData } from "@remix-run/react";
 import { HomeIcon, UserIcon, TelescopeIcon, PencilIcon } from "lucide-react";
 
 function Sidebar() {
   const [isVisible, setIsVisible] = useState(true);
+  const user = useRouteLoaderData("root");
 
   function handleMouseEnter() {
     setIsVisible(true);
@@ -52,7 +53,7 @@ function Sidebar() {
               Discover
             </Link>
             <Link
-              to="/profile/123"
+              to={`/profile/${user.username}`}
               className="btn btn-ghost flex items-center gap-3 text-lg font-medium"
             >
               <UserIcon size={24} />

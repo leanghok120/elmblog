@@ -9,6 +9,7 @@ import type { LinksFunction } from "@remix-run/node";
 
 import "./tailwind.css";
 import Navbar from "./components/Navbar";
+import { getUser } from "./utils/sessions";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -22,6 +23,12 @@ export const links: LinksFunction = () => [
     href: "https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap",
   },
 ];
+
+export async function loader({ request }) {
+  const user = await getUser(request);
+
+  return user;
+}
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
