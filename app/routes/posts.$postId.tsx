@@ -41,7 +41,7 @@ export default function Posts() {
 
   return (
     <>
-      {post.userId === user.id && (
+      {user && post.userId === user.id && (
         <Form method="delete">
           <button className="btn btn-ghost text-red-500 absolute top-5 right-5">
             <Trash2 size={20} />
