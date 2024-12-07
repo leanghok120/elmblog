@@ -1,8 +1,9 @@
 import type { MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import Logout from "~/components/Logout";
+import { Form, useLoaderData } from "@remix-run/react";
+import { LogOut } from "lucide-react";
 import PostCard from "~/components/PostCard";
 import prisma from "~/utils/db";
+import { destroyUserSession } from "~/utils/sessions";
 
 export const meta: MetaFunction = () => {
   return [
@@ -20,6 +21,10 @@ export async function loader({ params }) {
   return user;
 }
 
+export async function action({ request }) {
+  return await destroyUserSession(request);
+}
+
 export default function Profile() {
   const user = useLoaderData();
 
@@ -29,7 +34,16 @@ export default function Profile() {
         Profile
       </h1>
       <div className="border-2 border-base-200 p-5 rounded-xl shadow-xl mt-8 max-w-96 mx-auto relative">
-        <Logout />
+        <Form method="post" className="absolute top-4 right-4">
+          <button
+            type="submit"
+            name="intent"
+            value="logout"
+            className="btn btn-ghost text-error"
+          >
+            <LogOut />
+          </button>
+        </Form>
         <img
           src="https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=Adrian"
           alt="avatar"
