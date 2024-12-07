@@ -56,6 +56,15 @@ export default {
             },
             ul: { marginTop: "0.25rem", marginBottom: "0.25rem" },
             ol: { marginTop: "0.25rem", marginBottom: "0.25rem" },
+            // Custom styling for strong and b to ensure they are just bold without color change
+            strong: {
+              fontWeight: "bold",
+              color: "inherit", // Ensures no color inheritance
+            },
+            b: {
+              fontWeight: "bold",
+              color: "inherit", // Ensures no color inheritance
+            },
           },
         },
       }),
