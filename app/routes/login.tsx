@@ -3,7 +3,6 @@ import { Form, Link, redirect, useActionData } from "@remix-run/react";
 import { comparePassword } from "~/utils/auth";
 import prisma from "~/utils/db";
 import { createSession } from "~/utils/sessions";
-import { getUser } from "~/utils/sessions";
 
 export const meta: MetaFunction = () => {
   return [
@@ -36,7 +35,7 @@ export async function action({ request }) {
   });
 }
 
-function login() {
+function Login() {
   const actionData = useActionData();
 
   return (
@@ -79,4 +78,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;

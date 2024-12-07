@@ -20,7 +20,7 @@ export async function action({ request }) {
   const existingUser = await prisma.user.findUnique({ where: { username } });
 
   if (existingUser) {
-    return { error: "User already exists with this username!" };
+    return { error: "A user already exists with this username!" };
   }
 
   const hashedPassword = await hashPassword(password);
@@ -38,7 +38,7 @@ export async function action({ request }) {
   });
 }
 
-function signup() {
+function Signup() {
   const actionData = useActionData();
 
   return (
@@ -92,4 +92,4 @@ function signup() {
   );
 }
 
-export default signup;
+export default Signup;
