@@ -36,7 +36,6 @@ export default function Profile() {
         />
         <h2 className="text-xl md:text-3xl font-semibold mt-2">{user.name}</h2>
         <p className="text-gruvbox-muted">@{user.username}</p>
-        <p className="mt-3">A quick little bio</p>
         <h2 className="text-2xl font-bold mt-6">Posts</h2>
         <div className="mt-6 space-y-4">
           {user.posts.map((post) => (
