@@ -17,7 +17,6 @@ export async function loader({ params }) {
     include: { posts: true },
   });
 
-  console.log(user);
   return user;
 }
 

@@ -4,6 +4,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  json,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 
@@ -27,7 +28,7 @@ export const links: LinksFunction = () => [
 export async function loader({ request }) {
   const user = await getUser(request);
 
-  return user;
+  return json({ user });
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {

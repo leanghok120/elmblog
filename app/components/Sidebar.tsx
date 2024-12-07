@@ -4,7 +4,8 @@ import { HomeIcon, UserIcon, TelescopeIcon, PencilIcon } from "lucide-react";
 
 function Sidebar() {
   const [isVisible, setIsVisible] = useState(true);
-  const user = useRouteLoaderData("root");
+  const data = useRouteLoaderData("root");
+  const user = data?.user;
 
   function handleMouseEnter() {
     setIsVisible(true);
@@ -53,7 +54,7 @@ function Sidebar() {
               Discover
             </Link>
             <Link
-              to={`/profile/${user.username}`}
+              to={user ? `/profile/${user.username}` : "/signup"}
               className="btn btn-ghost flex items-center gap-3 text-lg font-medium"
             >
               <UserIcon size={24} />
