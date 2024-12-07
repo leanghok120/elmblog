@@ -9,6 +9,7 @@ import {
   quotePlugin,
 } from "@mdxeditor/editor";
 import { Trash2 } from "lucide-react";
+import { getUser } from "~/utils/sessions";
 
 export const meta: MetaFunction = () => {
   return [
@@ -17,14 +18,16 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export async function loader({ params }) {
+export async function loader({ request, params }) {
   const post: Post = await prisma.post.findUnique({
     where: {
       id: params.postId,
     },
   });
 
-  return post;
+  const user = await getUser(request);
+
+  return { post, user };
 }
 
 export async function action({ params }) {
@@ -34,15 +37,17 @@ export async function action({ params }) {
 }
 
 export default function Posts() {
-  const post = useLoaderData<Post>();
+  const { post, user } = useLoaderData<typeof loader>();
 
   return (
     <>
-      <Form method="delete">
-        <button className="btn btn-ghost text-red-500 absolute top-5 right-5">
-          <Trash2 size={20} />
-        </button>
-      </Form>
+      {post.userId === user.id && (
+        <Form method="delete">
+          <button className="btn btn-ghost text-red-500 absolute top-5 right-5">
+            <Trash2 size={20} />
+          </button>
+        </Form>
+      )}
       <h1 className="text-3xl md:text-4xl font-black text-gruvbox-contrast">
         {post.title}
       </h1>
