@@ -1,4 +1,12 @@
+import type { MetaFunction } from "@remix-run/node";
 import { Form, Link } from "@remix-run/react";
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Elm" },
+    { name: "description", content: "Welcome to Remix!" },
+  ];
+};
 
 function signup() {
   return (
