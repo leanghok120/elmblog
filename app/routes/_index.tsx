@@ -19,7 +19,10 @@ export async function loader({ request }) {
     return redirect("/signup");
   }
 
-  const posts: Post[] = await prisma.post.findMany({ include: { user: true } });
+  const posts: Post[] = await prisma.post.findMany({
+    include: { user: true },
+    where: { userId: user.id },
+  });
 
   return posts;
 }
