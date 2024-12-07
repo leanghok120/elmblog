@@ -5,6 +5,7 @@ import { Form, MetaFunction, redirect } from "@remix-run/react";
 import prisma from "~/utils/db";
 import formatDate from "~/utils/formatDate";
 import { requireAuth } from "~/utils/auth";
+import { getUser } from "~/utils/sessions";
 
 export const meta: MetaFunction = () => {
   return [
@@ -21,9 +22,10 @@ export async function action({ request }) {
   const formData = await request.formData();
   const title = formData.get("title");
   const content = formData.get("content");
+  const user = await getUser(request);
 
   await prisma.post.create({
-    data: { title, content, date: formatDate(new Date()) },
+    data: { title, content, date: formatDate(new Date()), userId: user.id },
   });
 
   return redirect("/");

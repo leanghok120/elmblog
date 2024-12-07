@@ -19,7 +19,7 @@ export async function loader({ request }) {
     return redirect("/signup");
   }
 
-  const posts: Post[] = await prisma.post.findMany();
+  const posts: Post[] = await prisma.post.findMany({ include: { user: true } });
 
   return posts;
 }
@@ -39,7 +39,7 @@ export default function Index() {
             id={post.id}
             title={post.title}
             date={post.date}
-            author="Leanghok"
+            author={post.user.name}
           />
         ))}
       </div>
