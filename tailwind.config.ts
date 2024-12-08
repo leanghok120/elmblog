@@ -39,24 +39,33 @@ export default {
             },
             h1: {
               color: theme("textColor.gruvbox.contrast"),
-              marginBottom: "0.5rem",
+              marginBottom: "1rem", // Increased spacing
             },
             h2: {
               color: theme("textColor.gruvbox.contrast"),
-              marginBottom: "0.5rem",
+              marginBottom: "0.75rem", // Increased spacing
             },
             h3: {
               color: theme("textColor.gruvbox.contrast"),
-              marginBottom: "0.5rem",
+              marginBottom: "0.75rem", // Increased spacing
             },
-            p: { marginTop: "0.25rem", marginBottom: "0.25rem" },
+            p: {
+              marginTop: "0.5rem", // Increased spacing
+              marginBottom: "0.5rem", // Increased spacing
+            },
             blockquote: {
-              marginTop: "0.5rem",
-              marginBottom: "0.5rem",
+              marginTop: "1rem", // Increased spacing
+              marginBottom: "1rem", // Increased spacing
               color: theme("textColor.gruvbox.muted"),
             },
-            ul: { marginTop: "0.25rem", marginBottom: "0.25rem" },
-            ol: { marginTop: "0.25rem", marginBottom: "0.25rem" },
+            ul: {
+              marginTop: "0.5rem", // Increased spacing
+              marginBottom: "0.5rem", // Increased spacing
+            },
+            ol: {
+              marginTop: "0.5rem", // Increased spacing
+              marginBottom: "0.5rem", // Increased spacing
+            },
             // Custom styling for strong and b to ensure they are just bold without color change
             strong: {
               fontWeight: "bold",
