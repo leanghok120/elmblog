@@ -24,6 +24,7 @@ export async function loader({ request, params }) {
     where: {
       id: params.postId,
     },
+    include: { user: true },
   });
 
   const user = await getUser(request);
@@ -32,7 +33,9 @@ export async function loader({ request, params }) {
 }
 
 export async function action({ params }) {
-  await prisma.post.delete({ where: { id: params.postId } });
+  await prisma.post.delete({
+    where: { id: params.postId },
+  });
 
   return redirect("/");
 }
@@ -52,6 +55,11 @@ export default function Posts() {
       <h1 className="text-3xl md:text-4xl font-black text-gruvbox-contrast">
         {post.title}
       </h1>
+      <div className="flex text-gruvbox-muted gap-5">
+        <p className="italic">{post.date}</p>
+        <span>&middot;</span>
+        <p>{post.user.name}</p>
+      </div>
       <MDXEditor
         markdown={post.content}
         plugins={[
