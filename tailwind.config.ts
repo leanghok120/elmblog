@@ -11,6 +11,7 @@ export default {
           DEFAULT: "#ebdbb2", // Gruvbox light foreground
           muted: "#a89984", // Gruvbox muted foreground
           contrast: "#fbf1c7", // Gruvbox high contrast light
+          blue: "#458588", // Gruvbox blue
         },
       },
       fontFamily: {
@@ -31,7 +32,7 @@ export default {
           css: {
             color: theme("textColor.gruvbox.DEFAULT"),
             a: {
-              color: theme("textColor.gruvbox.contrast"),
+              color: theme("textColor.gruvbox.blue"),
               "&:hover": {
                 color: theme("textColor.gruvbox.muted"),
               },

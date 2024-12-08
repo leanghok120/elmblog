@@ -3,6 +3,7 @@ import prisma from "~/utils/db";
 import type { Post } from "@prisma/client";
 import {
   headingsPlugin,
+  linkPlugin,
   listsPlugin,
   markdownShortcutPlugin,
   MDXEditor,
@@ -57,6 +58,7 @@ export default function Posts() {
           headingsPlugin(),
           listsPlugin(),
           quotePlugin(),
+          linkPlugin(),
           markdownShortcutPlugin(),
         ]}
         contentEditableClassName="outline-none prose prose-gruvbox mt-8"

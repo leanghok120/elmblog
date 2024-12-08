@@ -1,5 +1,6 @@
 import {
   headingsPlugin,
+  linkPlugin,
   listsPlugin,
   markdownShortcutPlugin,
   MDXEditor,
@@ -15,6 +16,7 @@ function Editor({ content, setContent }) {
         headingsPlugin(),
         listsPlugin(),
         quotePlugin(),
+        linkPlugin(),
         markdownShortcutPlugin(),
       ]}
       contentEditableClassName="outline-none prose prose-gruvbox"
