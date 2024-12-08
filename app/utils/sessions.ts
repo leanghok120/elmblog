@@ -1,4 +1,4 @@
-import { createCookieSessionStorage } from "@remix-run/node";
+import { createCookieSessionStorage, redirect } from "@remix-run/node";
 import prisma from "./db";
 
 const sessionSecret = process.env.SESSION_SECRET;
@@ -37,5 +37,8 @@ export async function getUser(request: Request) {
 
 export async function destroyUserSession(request: Request) {
   const session = await getSession(request.headers.get("Cookie"));
-  return destroySession(session);
+
+  return redirect("/signup", {
+    headers: { "Set-Cookie": await destroySession(session) },
+  });
 }

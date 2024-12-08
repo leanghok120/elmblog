@@ -1,9 +1,10 @@
 import type { MetaFunction } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 import { LogOut } from "lucide-react";
+import { request } from "node:http";
 import PostCard from "~/components/PostCard";
 import prisma from "~/utils/db";
-import { destroyUserSession } from "~/utils/sessions";
+import { destroyUserSession, getUser } from "~/utils/sessions";
 
 export const meta: MetaFunction = () => {
   return [
@@ -12,13 +13,15 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export async function loader({ params }) {
-  const user = await prisma.user.findUnique({
+export async function loader({ request, params }) {
+  const userData = await prisma.user.findUnique({
     where: { username: params.username },
     include: { posts: true },
   });
 
-  return user;
+  const currentUser = await getUser(request);
+
+  return { userData, currentUser };
 }
 
 export async function action({ request }) {
@@ -26,7 +29,7 @@ export async function action({ request }) {
 }
 
 export default function Profile() {
-  const user = useLoaderData();
+  const { userData, currentUser } = useLoaderData();
 
   return (
     <>
@@ -34,32 +37,31 @@ export default function Profile() {
         Profile
       </h1>
       <div className="border-2 border-base-200 p-5 rounded-xl shadow-xl mt-8 max-w-96 mx-auto relative">
-        <Form method="post" className="absolute top-4 right-4">
-          <button
-            type="submit"
-            name="intent"
-            value="logout"
-            className="btn btn-ghost text-error"
-          >
-            <LogOut />
-          </button>
-        </Form>
+        {currentUser?.username === userData.username && (
+          <Form method="post" className="absolute top-4 right-4">
+            <button className="btn btn-ghost text-error">
+              <LogOut />
+            </button>
+          </Form>
+        )}
         <img
           src="https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=Adrian"
           alt="avatar"
           className="w-20 rounded-full"
         />
-        <h2 className="text-xl md:text-3xl font-semibold mt-2">{user.name}</h2>
-        <p className="text-gruvbox-muted">@{user.username}</p>
+        <h2 className="text-xl md:text-3xl font-semibold mt-2">
+          {userData.name}
+        </h2>
+        <p className="text-gruvbox-muted">@{userData.username}</p>
         <h2 className="text-2xl font-bold mt-6">Posts</h2>
         <div className="mt-6 space-y-4">
-          {user.posts.map((post) => (
+          {userData.posts.map((post) => (
             <PostCard
               key={post.id}
               id={post.id}
               title={post.title}
               date={post.date}
-              author={user.name}
+              author={userData.name}
             />
           ))}
         </div>
