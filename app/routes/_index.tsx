@@ -16,7 +16,7 @@ export const meta: MetaFunction = () => {
 export async function loader({ request }) {
   const user = await getUser(request);
   if (!user) {
-    return redirect("/posts/6754404a0886ca94a8c973c4");
+    return redirect("posts/6755792ea7cdd843a760c220");
   }
 
   const posts: Post[] = await prisma.post.findMany({
