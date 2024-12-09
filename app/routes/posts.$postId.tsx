@@ -11,6 +11,7 @@ import {
 } from "@mdxeditor/editor";
 import { Trash2 } from "lucide-react";
 import { getUser } from "~/utils/sessions";
+import ClientOnly from "~/components/ClientOnly";
 
 export const meta: MetaFunction = () => {
   return [
@@ -60,18 +61,20 @@ export default function Posts() {
         <span>&middot;</span>
         <p>{post.user.name}</p>
       </div>
-      <MDXEditor
-        markdown={post.content}
-        plugins={[
-          headingsPlugin(),
-          listsPlugin(),
-          quotePlugin(),
-          linkPlugin(),
-          markdownShortcutPlugin(),
-        ]}
-        contentEditableClassName="outline-none prose prose-gruvbox mt-8"
-        readOnly={true}
-      />
+      <ClientOnly>
+        <MDXEditor
+          markdown={post.content}
+          plugins={[
+            headingsPlugin(),
+            listsPlugin(),
+            quotePlugin(),
+            linkPlugin(),
+            markdownShortcutPlugin(),
+          ]}
+          contentEditableClassName="outline-none prose prose-gruvbox mt-8"
+          readOnly={true}
+        />
+      </ClientOnly>
     </>
   );
 }
