@@ -7,13 +7,14 @@ function Sidebar() {
   const data = useRouteLoaderData("root");
   const user = data?.user;
 
-  function handleMouseEnter() {
+  // Use a small delay to prevent accidental triggers
+  const handleMouseEnter = () => {
     setIsVisible(true);
-  }
+  };
 
-  function handleMouseLeave() {
+  const handleMouseLeave = () => {
     setIsVisible(false);
-  }
+  };
 
   return (
     <>
@@ -33,6 +34,7 @@ function Sidebar() {
         <div className="p-4">
           <nav className="flex flex-col gap-6">
             <Link
+              prefetch="intent"
               to="/"
               className="btn btn-ghost flex items-center gap-3 text-lg font-medium"
             >
@@ -40,6 +42,7 @@ function Sidebar() {
               Home
             </Link>
             <Link
+              prefetch="intent"
               to="/write"
               className="btn btn-ghost flex items-center gap-3 text-lg font-medium"
             >
@@ -47,6 +50,7 @@ function Sidebar() {
               Write
             </Link>
             <Link
+              prefetch="intent"
               to="/discover"
               className="btn btn-ghost flex items-center gap-3 text-lg font-medium"
             >
@@ -54,6 +58,7 @@ function Sidebar() {
               Discover
             </Link>
             <Link
+              prefetch="intent"
               to={user ? `/profile/${user.username}` : "/signup"}
               className="btn btn-ghost flex items-center gap-3 text-lg font-medium"
             >
