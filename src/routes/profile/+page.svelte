@@ -7,8 +7,17 @@
 	import { LogOut, Settings } from 'lucide-svelte';
 	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
+	import { enhance } from '$app/forms';
 
 	let { data }: PageData = $props();
+
+	let username = $state(data.user.username);
+	let bio = $state(data.user.bio);
+
+	$effect(() => {
+		username = data.user.username;
+		bio = data.user.bio;
+	});
 
 	function formatDate(dateString: string) {
 		const date = new Date(dateString);
@@ -35,19 +44,21 @@
 						Make changes to your profile here. Click save when you're done.
 					</Dialog.Description>
 				</Dialog.Header>
-				<div class="grid gap-4 py-4">
-					<div class="grid grid-cols-4 items-center gap-4">
-						<Label for="name" class="text-right">Username</Label>
-						<Input id="name" value="johndoe120" class="col-span-3" />
+				<form action="?/updateProfile" method="POST" class="grid gap-4 py-4" use:enhance>
+					<div class="items-center gap-4">
+						<Label for="username" class="text-right">Username</Label>
+						<Input id="username" name="username" bind:value={username} class="col-span-3" />
 					</div>
-					<div class="grid grid-cols-4 items-center gap-4">
-						<Label for="username" class="text-right">Bio</Label>
-						<Input id="username" value="A quick simple bio" class="col-span-3" />
+					<div class="items-center gap-4">
+						<Label for="bio" class="text-right">Bio</Label>
+						<Input id="bio" name="bio" bind:value={bio} class="col-span-3" />
 					</div>
-				</div>
-				<Dialog.Footer>
 					<Button type="submit">Save changes</Button>
-				</Dialog.Footer>
+					<Button type="submit" formaction="?/logout" variant="destructive">
+						<LogOut />
+						Logout
+					</Button>
+				</form>
 			</Dialog.Content>
 		</Dialog.Root>
 		<Avatar.Root class="size-20">

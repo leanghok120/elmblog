@@ -23,9 +23,6 @@ importers:
       drizzle-orm:
         specifier: ^0.33.0
         version: 0.33.0(@neondatabase/serverless@0.9.5)(@types/pg@8.11.6)
-      mode-watcher:
-        specifier: ^0.5.0
-        version: 0.5.0(svelte@5.16.0)
       uuid:
         specifier: ^11.0.3
         version: 11.0.3
@@ -69,6 +66,9 @@ importers:
       lucide-svelte:
         specifier: ^0.469.0
         version: 0.469.0(svelte@5.16.0)
+      mode-watcher:
+        specifier: ^0.5.0
+        version: 0.5.0(svelte@5.16.0)
       prettier:
         specifier: ^3.3.2
         version: 3.4.2
