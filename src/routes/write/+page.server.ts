@@ -5,8 +5,8 @@ import { v4 as uuid } from 'uuid';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals }) => {
-	if (!locals.session.userId) {
-		return redirect(401, '/login');
+	if (!locals.user) {
+		return redirect(301, '/login');
 	}
 };
 
