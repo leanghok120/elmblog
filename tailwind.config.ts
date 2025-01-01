@@ -1,103 +1,64 @@
+import { fontFamily } from "tailwindcss/defaultTheme";
 import type { Config } from "tailwindcss";
-import daisyui from "daisyui";
-import typography from "@tailwindcss/typography";
 
-export default {
-  content: ["./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}"],
-  theme: {
-    extend: {
-      textColor: {
-        gruvbox: {
-          DEFAULT: "#ebdbb2", // Gruvbox light foreground
-          muted: "#a89984", // Gruvbox muted foreground
-          contrast: "#fbf1c7", // Gruvbox high contrast light
-          blue: "#458588", // Gruvbox blue
-        },
-      },
-      fontFamily: {
-        sans: [
-          "Jetbrains Mono",
-          "Inter",
-          "ui-sans-serif",
-          "system-ui",
-          "sans-serif",
-          "Apple Color Emoji",
-          "Segoe UI Emoji",
-          "Segoe UI Symbol",
-          "Noto Color Emoji",
-        ],
-      },
-      typography: (theme) => ({
-        gruvbox: {
-          css: {
-            color: theme("textColor.gruvbox.DEFAULT"),
-            a: {
-              color: theme("textColor.gruvbox.blue"),
-              "&:hover": {
-                color: theme("textColor.gruvbox.muted"),
-              },
-            },
-            h1: {
-              color: theme("textColor.gruvbox.contrast"),
-              marginBottom: "1rem", // Increased spacing
-            },
-            h2: {
-              color: theme("textColor.gruvbox.contrast"),
-              marginBottom: "0.75rem", // Increased spacing
-            },
-            h3: {
-              color: theme("textColor.gruvbox.contrast"),
-              marginBottom: "0.75rem", // Increased spacing
-            },
-            p: {
-              marginTop: "0.5rem", // Increased spacing
-              marginBottom: "0.5rem", // Increased spacing
-            },
-            blockquote: {
-              marginTop: "1rem", // Increased spacing
-              marginBottom: "1rem", // Increased spacing
-              color: theme("textColor.gruvbox.muted"),
-            },
-            ul: {
-              marginTop: "0.5rem", // Increased spacing
-              marginBottom: "0.5rem", // Increased spacing
-            },
-            ol: {
-              marginTop: "0.5rem", // Increased spacing
-              marginBottom: "0.5rem", // Increased spacing
-            },
-            // Custom styling for strong and b to ensure they are just bold without color change
-            strong: {
-              fontWeight: "bold",
-              color: "inherit", // Ensures no color inheritance
-            },
-            b: {
-              fontWeight: "bold",
-              color: "inherit", // Ensures no color inheritance
-            },
-          },
-        },
-      }),
-    },
-  },
-  daisyui: {
-    themes: [
-      {
-        gruvbox: {
-          primary: "#fabd2f", // Gruvbox yellow
-          secondary: "#d3869b", // Gruvbox bright purple
-          accent: "#8ec07c", // Gruvbox bright aqua
-          neutral: "#282828", // Gruvbox dark background
-          "base-100": "#1d2021", // Gruvbox darkest background
-          "base-200": "#3c3836", // Gruvbox medium-dark background
-          "base-300": "#504945", // Gruvbox light-dark background
-          info: "#83a598", // Gruvbox bright blue
-          success: "#b8bb26", // Gruvbox bright green
-          warning: "#fe8019", // Gruvbox bright orange
-          error: "#fb4934", // Gruvbox bright red
-        },
-      },
-    ],
-  },
-  plugins: [typography, daisyui],
-} satisfies Config;
+const config: Config = {
+	darkMode: ["class"],
+	content: ["./src/**/*.{html,js,svelte,ts}"],
+	safelist: ["dark"],
+	theme: {
+		container: {
+			center: true,
+			padding: "2rem",
+			screens: {
+				"2xl": "1400px"
+			}
+		},
+		extend: {
+			colors: {
+				border: "hsl(var(--border) / <alpha-value>)",
+				input: "hsl(var(--input) / <alpha-value>)",
+				ring: "hsl(var(--ring) / <alpha-value>)",
+				background: "hsl(var(--background) / <alpha-value>)",
+				foreground: "hsl(var(--foreground) / <alpha-value>)",
+				primary: {
+					DEFAULT: "hsl(var(--primary) / <alpha-value>)",
+					foreground: "hsl(var(--primary-foreground) / <alpha-value>)"
+				},
+				secondary: {
+					DEFAULT: "hsl(var(--secondary) / <alpha-value>)",
+					foreground: "hsl(var(--secondary-foreground) / <alpha-value>)"
+				},
+				destructive: {
+					DEFAULT: "hsl(var(--destructive) / <alpha-value>)",
+					foreground: "hsl(var(--destructive-foreground) / <alpha-value>)"
+				},
+				muted: {
+					DEFAULT: "hsl(var(--muted) / <alpha-value>)",
+					foreground: "hsl(var(--muted-foreground) / <alpha-value>)"
+				},
+				accent: {
+					DEFAULT: "hsl(var(--accent) / <alpha-value>)",
+					foreground: "hsl(var(--accent-foreground) / <alpha-value>)"
+				},
+				popover: {
+					DEFAULT: "hsl(var(--popover) / <alpha-value>)",
+					foreground: "hsl(var(--popover-foreground) / <alpha-value>)"
+				},
+				card: {
+					DEFAULT: "hsl(var(--card) / <alpha-value>)",
+					foreground: "hsl(var(--card-foreground) / <alpha-value>)"
+				}
+			},
+			borderRadius: {
+				lg: "var(--radius)",
+				md: "calc(var(--radius) - 2px)",
+				sm: "calc(var(--radius) - 4px)"
+			},
+			fontFamily: {
+				sans: [...fontFamily.sans]
+			}
+		}
+	},
+};
+
+export default config;
