@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import { Textarea } from '$lib/components/ui/textarea';
 </script>
@@ -6,3 +7,4 @@
 <h1 class="text-4xl font-black">Write</h1>
 <Input placeholder="Title" class="mt-6" />
 <Textarea placeholder="Write here..." class="mt-4 h-52" />
+<Button class="mt-5">Publish</Button>
