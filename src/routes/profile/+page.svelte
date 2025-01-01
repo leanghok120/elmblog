@@ -16,10 +16,19 @@
 		<p class="mt-1">A quick bio</p>
 
 		<h2 class="mt-4 text-2xl font-bold">Posts</h2>
-		<ul class="mt-2 space-y-2 underline">
-			<li><a href="#">Markdown</a></li>
-			<li><a href="#">Switching from neovim to vscode</a></li>
-			<li><a href="#">Learning sveltekit</a></li>
+		<ul class="mt-2 space-y-2">
+			<li class="flex items-center justify-between">
+				<a href="#" class="underline">Markdown</a>
+				<p>20/12/2024</p>
+			</li>
+			<li class="flex items-center justify-between">
+				<a href="#" class="underline">Switching from neovim to vscode</a>
+				<p>20/12/2024</p>
+			</li>
+			<li class="flex items-center justify-between">
+				<a href="#" class="underline">Learning sveltekit</a>
+				<p>20/12/2024</p>
+			</li>
 		</ul>
 	</Card.Content>
 </Card.Root>
