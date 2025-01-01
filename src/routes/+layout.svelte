@@ -6,6 +6,20 @@
 	let { children } = $props();
 </script>
 
-<ThemeToggle />
-<ModeWatcher />
-{@render children()}
+<main class="mx-auto min-h-screen max-w-2xl p-5">
+	<ThemeToggle />
+	<ModeWatcher />
+
+	<nav>
+		<ul class="flex gap-3">
+			<li><a href="/">Home</a></li>
+			<li><a href="/discover">Discover</a></li>
+			<li><a href="/write">Write</a></li>
+			<li><a href="/login">Profile</a></li>
+		</ul>
+	</nav>
+
+	<div class="mt-10">
+		{@render children()}
+	</div>
+</main>
