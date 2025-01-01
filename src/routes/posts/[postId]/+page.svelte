@@ -1,9 +1,12 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import { Button } from '$lib/components/ui/button';
+	import { Trash } from 'lucide-svelte';
 
 	let { data }: PageData = $props();
-	let post = data.p;
-	let user = data.u;
+	let p = data.p;
+	let u = data.u;
+	let user = data.user;
 
 	function formatDate(dateString: string) {
 		const date = new Date(dateString);
@@ -15,9 +18,17 @@
 	}
 </script>
 
-<h1 class="text-4xl font-black">{post.title}</h1>
+<h1 class="text-4xl font-black">{p.title}</h1>
 <div class="flex gap-4 font-bold text-gray-500">
-	<p class="italic">{formatDate(post.createdAt)}</p>
-	<p>{user.username}</p>
+	<p class="italic">{formatDate(p.createdAt)}</p>
+	<p>{u.username}</p>
 </div>
-<p class="mt-5">{post.content}</p>
+<p class="mt-5">{p.content}</p>
+{#if user.id === p.userId}
+	<form action="?/deletePost" method="POST" class="mt-5">
+		<Button variant="outline" size="icon" type="submit">
+			<Trash />
+			<span class="sr-only">Delete post</span></Button
+		>
+	</form>
+{/if}
