@@ -1,9 +1,12 @@
 <script lang="ts">
 	import * as Card from '$lib/components/ui/card';
 	import * as Avatar from '$lib/components/ui/avatar';
+	import * as Dialog from '$lib/components/ui/dialog';
 	import type { PageData } from '../$types';
-	import { Button } from '$lib/components/ui/button';
-	import { LogOut } from 'lucide-svelte';
+	import { Button, buttonVariants } from '$lib/components/ui/button';
+	import { LogOut, Settings } from 'lucide-svelte';
+	import { Label } from '$lib/components/ui/label';
+	import { Input } from '$lib/components/ui/input';
 
 	let { data }: PageData = $props();
 
@@ -19,12 +22,34 @@
 
 <Card.Root class="mx-auto max-w-96">
 	<Card.Content class="relative">
-		<form action="?/logout" method="POST">
-			<Button variant="outline" size="icon" class="absolute right-5 top-5" type="submit">
-				<LogOut />
-				<span class="sr-only">Logout</span>
-			</Button>
-		</form>
+		<Dialog.Root>
+			<Dialog.Trigger
+				class={`${buttonVariants({ variant: 'outline', size: 'icon' })} absolute right-5 top-5`}
+			>
+				<Settings />
+			</Dialog.Trigger>
+			<Dialog.Content class="sm:max-w-[425px]">
+				<Dialog.Header>
+					<Dialog.Title>Edit profile</Dialog.Title>
+					<Dialog.Description>
+						Make changes to your profile here. Click save when you're done.
+					</Dialog.Description>
+				</Dialog.Header>
+				<div class="grid gap-4 py-4">
+					<div class="grid grid-cols-4 items-center gap-4">
+						<Label for="name" class="text-right">Username</Label>
+						<Input id="name" value="johndoe120" class="col-span-3" />
+					</div>
+					<div class="grid grid-cols-4 items-center gap-4">
+						<Label for="username" class="text-right">Bio</Label>
+						<Input id="username" value="A quick simple bio" class="col-span-3" />
+					</div>
+				</div>
+				<Dialog.Footer>
+					<Button type="submit">Save changes</Button>
+				</Dialog.Footer>
+			</Dialog.Content>
+		</Dialog.Root>
 		<Avatar.Root class="size-20">
 			<Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
 			<Avatar.Fallback>CN</Avatar.Fallback>
