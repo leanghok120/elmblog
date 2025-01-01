@@ -23,7 +23,7 @@
 	{#each data.posts as post}
 		<li class="flex items-center justify-between">
 			<a href="/posts/{post.id}" class="underline">{post.title}</a>
-			<p>{formatDate(post.createdAt)}</p>
+			<p class="text-gray-500">{formatDate(post.createdAt)}</p>
 		</li>
 	{/each}
 </ul>
