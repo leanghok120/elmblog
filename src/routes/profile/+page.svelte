@@ -13,7 +13,7 @@
 			<Avatar.Fallback>CN</Avatar.Fallback>
 		</Avatar.Root>
 		<h1 class="mt-2 text-2xl font-bold">{data.user.username}</h1>
-		<p class="mt-1">A quick bio</p>
+		<p class="mt-1">{data.user.bio}</p>
 
 		<h2 class="mt-4 text-2xl font-bold">Posts</h2>
 		<ul class="mt-2 space-y-2">
