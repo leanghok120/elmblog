@@ -15,7 +15,7 @@
 			<li><a href="/">Home</a></li>
 			<li><a href="/discover">Discover</a></li>
 			<li><a href="/write">Write</a></li>
-			<li><a href="/login">Profile</a></li>
+			<li><a href="/profile">Profile</a></li>
 		</ul>
 	</nav>
 
