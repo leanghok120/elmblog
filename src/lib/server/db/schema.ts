@@ -4,7 +4,10 @@ export const post = pgTable('post', {
 	id: text('id').primaryKey(),
 	title: text('title').notNull(),
 	content: text('content').notNull(),
-	createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull()
+	createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).notNull(),
+	userId: text('user_id')
+		.notNull()
+		.references(() => user.id)
 });
 
 export const user = pgTable('user', {

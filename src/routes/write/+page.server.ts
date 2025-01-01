@@ -2,9 +2,16 @@ import { db } from '$lib/server/db';
 import { post } from '$lib/server/db/schema';
 import { fail, redirect, type Actions } from '@sveltejs/kit';
 import { v4 as uuid } from 'uuid';
+import type { PageServerLoad } from './$types';
+
+export const load: PageServerLoad = async ({ locals }) => {
+	if (!locals.session.userId) {
+		return redirect(401, '/login');
+	}
+};
 
 export const actions: Actions = {
-	publish: async ({ request }) => {
+	publish: async ({ request, locals }) => {
 		const formData = await request.formData();
 		const title = String(formData.get('title'));
 		const content = String(formData.get('content'));
@@ -17,7 +24,8 @@ export const actions: Actions = {
 			id: uuid(),
 			title,
 			content,
-			createdAt: new Date()
+			createdAt: new Date(),
+			userId: locals.session.userId
 		});
 
 		return redirect(301, '/');
