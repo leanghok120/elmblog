@@ -2,7 +2,7 @@ import { db } from '$lib/server/db';
 import { desc, eq } from 'drizzle-orm';
 import type { Actions, PageServerLoad } from './$types';
 import { post, user } from '$lib/server/db/schema';
-import { redirect } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async ({ params, locals }) => {
 	const postId = params.postId;
@@ -10,7 +10,14 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 		where: eq(post.id, postId),
 		orderBy: [desc(post.createdAt)]
 	});
+	if (!p) {
+		throw fail(404, { message: 'Post not found' });
+	}
+
 	const u = await db.query.user.findFirst({ where: eq(user.id, p.userId) });
+	if (!u) {
+		throw fail(404, { message: 'User not found' });
+	}
 
 	return { p, u, user: locals.user };
 };

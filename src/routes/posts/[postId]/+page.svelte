@@ -4,13 +4,12 @@
 	import { Trash } from 'lucide-svelte';
 	import { enhance } from '$app/forms';
 
-	let { data }: PageData = $props();
+	let { data }: { data: PageData } = $props();
 	let p = data.p;
 	let u = data.u;
 	let user = data.user;
 
-	function formatDate(dateString: string) {
-		const date = new Date(dateString);
+	function formatDate(date: Date) {
 		return new Intl.DateTimeFormat('en-GB', {
 			day: '2-digit',
 			month: '2-digit',

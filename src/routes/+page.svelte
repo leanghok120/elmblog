@@ -1,10 +1,9 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 
-	let { data }: PageData = $props();
+	let { data }: { data: PageData } = $props();
 
-	function formatDate(dateString: string) {
-		const date = new Date(dateString);
+	function formatDate(date: Date) {
 		return new Intl.DateTimeFormat('en-GB', {
 			day: '2-digit',
 			month: '2-digit',
