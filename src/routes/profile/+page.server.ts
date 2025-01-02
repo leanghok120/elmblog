@@ -2,15 +2,18 @@ import { fail, redirect, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from '../signup/$types';
 import * as auth from '$lib/server/auth';
 import { db } from '$lib/server/db';
-import { eq } from 'drizzle-orm';
+import { desc, eq } from 'drizzle-orm';
 import { post, user } from '$lib/server/db/schema';
 
 export const load: PageServerLoad = async (event) => {
 	if (!event.locals.user) {
-		return redirect(301, '/login');
+		throw redirect(301, '/login');
 	}
 
-	const posts = await db.query.post.findMany({ where: eq(post.userId, event.locals.user.id) });
+	const posts = await db.query.post.findMany({
+		where: eq(post.userId, event.locals.user.id),
+		orderBy: [desc(post.createdAt)]
+	});
 
 	return { user: event.locals.user, posts };
 };
@@ -29,7 +32,7 @@ export const actions: Actions = {
 			return fail(400, { message: 'Invalid username' });
 		}
 
-		await db.update(user).set({ username, bio }).where(eq(user.id, locals.user.id));
+		await db.update(user).set({ username, bio }).where(eq(user.id, locals.user!.id));
 		return { success: true };
 	},
 
