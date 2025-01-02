@@ -24,7 +24,7 @@
 	<p>{u.username}</p>
 </div>
 <p class="mt-5">{p.content}</p>
-{#if user.id === p.userId}
+{#if user && user.id === p.userId}
 	<form action="?/deletePost" method="POST" class="mt-5">
 		<Button variant="outline" size="icon" type="submit">
 			<Trash />
