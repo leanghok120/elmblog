@@ -62,7 +62,7 @@
 			</Dialog.Content>
 		</Dialog.Root>
 		<Avatar.Root class="size-20">
-			<Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
+			<Avatar.Image src="/defaultpfp.svg" alt="@shadcn" />
 			<Avatar.Fallback>CN</Avatar.Fallback>
 		</Avatar.Root>
 		<h1 class="mt-2 text-2xl font-bold">{data.user.username}</h1>
