@@ -2,14 +2,14 @@
 	import * as Card from '$lib/components/ui/card';
 	import * as Avatar from '$lib/components/ui/avatar';
 	import * as Dialog from '$lib/components/ui/dialog';
-	import type { PageData } from '../$types';
+	import type { PageData } from './$types';
 	import { Button, buttonVariants } from '$lib/components/ui/button';
 	import { LogOut, Settings } from 'lucide-svelte';
 	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
 	import { enhance } from '$app/forms';
 
-	let { data }: PageData = $props();
+	let { data }: { data: PageData } = $props();
 
 	let username = $state(data.user.username);
 	let bio = $state(data.user.bio);
@@ -63,7 +63,7 @@
 		</Dialog.Root>
 		<Avatar.Root class="size-20">
 			<Avatar.Image src="/defaultpfp.svg" alt="@shadcn" />
-			<Avatar.Fallback>CN</Avatar.Fallback>
+			<Avatar.Fallback>{data.user.username.slice(0, 2)}</Avatar.Fallback>
 		</Avatar.Root>
 		<h1 class="mt-2 text-2xl font-bold">{data.user.username}</h1>
 		<p class="mt-1">{data.user.bio}</p>
@@ -77,7 +77,7 @@
 			{#each data.posts as post}
 				<li class="flex items-center justify-between">
 					<a href="/posts/{post.id}" class="underline">{post.title}</a>
-					<p class="text-gray-500">{formatDate(post.createdAt)}</p>
+					<p class="text-gray-500">{formatDate(String(post.createdAt))}</p>
 				</li>
 			{/each}
 		</ul>
