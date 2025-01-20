@@ -12,7 +12,7 @@
 	}
 </script>
 
-<h1 class="text-4xl font-black">Home</h1>
+<h1 class="text-4xl font-black text-primary">Home</h1>
 
 <ul class="mt-5 space-y-2 text-lg">
 	{#if data.posts.length === 0}

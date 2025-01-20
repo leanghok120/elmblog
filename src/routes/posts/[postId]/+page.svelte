@@ -18,7 +18,7 @@
 	}
 </script>
 
-<h1 class="text-4xl font-black">{p.title}</h1>
+<h1 class="text-4xl font-black text-primary">{p.title}</h1>
 <div class="flex gap-4 font-bold text-gray-500">
 	<p class="italic">{formatDate(p.createdAt)}</p>
 	<p>{u.username}</p>

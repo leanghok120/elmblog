@@ -5,7 +5,7 @@
 	import { Textarea } from '$lib/components/ui/textarea';
 </script>
 
-<h1 class="text-4xl font-black">Write</h1>
+<h1 class="text-4xl font-black text-primary">Write</h1>
 <form action="?/publish" method="POST" use:enhance>
 	<Input placeholder="Title" class="mt-6" name="title" />
 	<Textarea placeholder="Write here..." class="mt-4 h-52" name="content" />

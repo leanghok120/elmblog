@@ -12,7 +12,7 @@
 <div class="flex items-center justify-center">
 	<Card.Root class="w-full max-w-sm">
 		<Card.Header>
-			<Card.Title class="text-2xl">Signup</Card.Title>
+			<Card.Title class="text-2xl text-primary">Signup</Card.Title>
 		</Card.Header>
 		<Card.Content>
 			<form action="?/register" method="POST" class="grid gap-4" use:enhance>

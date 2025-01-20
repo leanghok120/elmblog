@@ -64,7 +64,7 @@
 			<Avatar.Image src="/defaultpfp.svg" alt="@shadcn" />
 			<Avatar.Fallback>{data.user.username.slice(0, 2)}</Avatar.Fallback>
 		</Avatar.Root>
-		<h1 class="mt-2 text-2xl font-bold">{data.user.username}</h1>
+		<h1 class="mt-2 text-2xl font-bold text-primary">{data.user.username}</h1>
 		<p class="mt-1">{data.user.bio}</p>
 
 		<h2 class="mt-4 text-2xl font-bold">Posts</h2>
